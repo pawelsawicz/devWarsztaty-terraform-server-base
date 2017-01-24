@@ -17,4 +17,13 @@ resource "aws_instance" "ns-1" {
   tags {
     Name = "ns-1"
   }
+
+  provisioner "remote-exec" {
+    script = "./server-bootstrap.sh"
+    connection {
+      type = "ssh"
+      user = "ubuntu"
+      timeout = "1m"
+    }
+  }
 }
